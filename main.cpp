@@ -2,6 +2,7 @@
 
 using namespace std;
 
+//ABCD
 class Node{
 public:
     int data;
@@ -88,4 +89,5 @@ int main() {
 
     cout<<"The size is: "<<s->size()<<endl;
     s->isEmpty();
+   
 }
