@@ -1,18 +1,14 @@
 #include <iostream>
-#include <new>
+
 using namespace std;
 
-
-
 class Node{
-
 public:
     int data;
     Node *next;
     Node(int x, Node *n){
         data=x; next=n;
     }
-
 };
 
 class Stack{
@@ -20,83 +16,59 @@ private:
     Node *top;
     int s;
     int a;
-public:
-    Stack(int a){
-        top = nullptr;
-        s=a;
 
+public:
+    Stack(int n){
+        top = nullptr;
+        s=n;
+        a=n;
     }
 
     int size(){
-        cout<<"The size is: "<<a<<endl;
-        return a;
+        return a-s;
     }
-    void push(int data){
 
+    void push(int data){
         if(s==0){
             cout<<"You can't add anymore."<<endl;
-        }
-
-        else{
-            Node *t = new Node(data, nullptr);
-
-
-            (*t).data = data;
-            (*t).next = top;
+        } else{
+            Node t = new Node(data, nullptr);
+            (t).data = data;
+            (t).next = top;
             top=t;
-            cout<<(*t).data<<" pushed into stack\n";
+            cout<<(t).data<<" pushed into stack\n";
             s--;
         }
 
     }
 
-
-
-
     void pop(){
-
-        Node *temp;
+        Node temp;
         if(!top){
             cout<<"Stack UnderFlow can't delete."<<endl;
         }
         else{
-
-
             temp=top;
             top=top->next;
 
-
-            cout<<"You popped " << (*temp).data<<endl;
+            cout<<"You popped " << (temp).data<<endl;
             free(temp);
-            s--;
+            s++;
         }
-
     }
-
 
     void topS(){
-
         cout<<"Top element is: " << (*top).data<<endl;
-
     }
 
-    void isEmpty(){
-        if(a==0){
-
-            cout<<"The stack is empty."<<endl;
-
+    bool isEmpty(){
+        if(size()==0){
+            cout<<"Stack is empty."<<endl;
+            return true;
         }
-        if(s==0){
-            cout<<"Stack is full."<<endl;
-        }
-        else{
-            cout<<"Stack is not empty."<<endl;
-        }
-
+        cout<<"Stack is not empty."<<endl;
+        return false;
     }
-
-
-
 };
 
 int main() {
@@ -104,14 +76,16 @@ int main() {
     Stack *s = new Stack(3);
     s->push(10);
     s->push(12);
+    s->pop();
     s->push(3);
     s->push(4);
 
     s->pop();
     s->topS();
+    s->pop();
+    s->pop();
+    s->pop();
 
-
-
-    s->size();
+    cout<<"The size is: "<<s->size()<<endl;
     s->isEmpty();
 }
